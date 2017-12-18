@@ -19,19 +19,26 @@ export default class Board extends React.Component {
             lists: [...this.state.lists, {title}]
         });
     }
-
+    
     render() {
         const lists = this.state.lists.map((list, index) =>
-            <List key={index} {...list} />
+        <li className="list-wrapper" key={index}>
+            <List {...list}/>
+        </li>
         );
 
         return (
             <div className="board">
-                <h2>{this.props.title}</h2>
-                <div className="lists">
-                    {lists}
-                    <AddForm type="list" onAdd={title => this.addList(title)} />
-                </div>
+                <h2>Example board</h2>
+                <ul className="lists">
+                        {lists}
+                        <li>
+                        <AddForm
+                            type="card"
+                            onAdd={text => this.addList(text)}
+                        />
+                    </li>
+                </ul>
             </div>
         );
     }
